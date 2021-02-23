@@ -1,2 +1,5 @@
-# hashcode2021
-HashCode 2021 Competition Code
+# HashCode 2021
+
+Competition Code and Material
+
+Programming Language of choice this year: Python
