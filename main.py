@@ -7,6 +7,7 @@
 import os
 import time
 import sys
+import dask
 from dask import delayed
 
 from src.data.input import Input
@@ -44,6 +45,47 @@ def run_algorithm(algo, file, parameter={}):
     return score.score
 
 
+
+def run_algorithm_grid_search(algo, file, parameter_grid=[]):
+
+    start_time = time.time()
+
+    current_dir = os.getcwd()
+    filepath = current_dir + "/input/" + file + ".txt"
+
+    input = Input(filepath, file)
+    input.parse()
+
+    scores = []
+    for p in parameter_grid:
+        output = delayed(algo.solve)(input, p)
+        score = delayed(Score)(output)
+        scores.append((score, output, p))
+
+    scores = dask.compute(*scores, num_workers=4)
+
+    end_time = time.time()
+
+    scores = sorted(scores, key=lambda x: x[0].score, reverse=True)
+    # print("Scores: ", list(map(lambda x: x[0].score, scores)))
+
+    score = scores[0][0]
+    output = scores[0][1]
+    parameter = scores[0][2]
+
+    output.write()
+
+    print("{:<15}".format(algo.getName()) \
+        + " executed input: " + "{:<10}".format(file) \
+        + " in {:.2f}s".format(end_time - start_time) \
+        + " | Score: " + "{:<5}".format(score.score) \
+        + " | Params: " + str(parameter))
+
+
+    return score.score
+
+
+
 if __name__ == "__main__":
 
     print("-------------------------")
@@ -53,7 +95,7 @@ if __name__ == "__main__":
 
     scores = []
     for f in FILES:
-        res = delayed(run_algorithm)(BasicAlgorithm(), f)
+        res = delayed(run_algorithm_grid_search)(BasicAlgorithm(), f, parameter_grid=[1, 2])
         scores.append(res)
 
     total_scores = delayed(sum)(scores)

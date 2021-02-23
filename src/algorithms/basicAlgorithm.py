@@ -28,7 +28,7 @@ class BasicAlgorithm(Algorithm):
         # TODO: Implement algorithm and set output properties
 
         # TODO: remove
-        time.sleep(4)
+        time.sleep(2)
 
         return output
 
