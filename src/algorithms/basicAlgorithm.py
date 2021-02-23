@@ -3,6 +3,9 @@
 # Basic Algorithm
 #
 # ------------------------------
+import os
+import time
+
 from .algorithm import Algorithm
 from ..data.output import Output
 
@@ -19,9 +22,13 @@ class BasicAlgorithm(Algorithm):
 
         """
         
-        output = Output()
+        current_dir = os.getcwd()
+        filepath = current_dir + "/output/" + input.name + "_out.txt"
+        output = Output(filepath, input.name + "_out")
         # TODO: Implement algorithm and set output properties
 
+        # TODO: remove
+        time.sleep(4)
 
         return output
 
