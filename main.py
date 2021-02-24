@@ -36,9 +36,9 @@ def run_algorithm(algo, file, parameter={}):
     end_time = time.time()
 
     print("{:<15}".format(algo.getName()) \
-        + " executed input: " + "{:<10}".format(file) \
+        + " executed input: " + "{:<15}".format(file) \
         + " in {:.2f}s".format(end_time - start_time) \
-        + " | Score: " + "{:<5}".format(score.score) \
+        + " | Score: " + "{:<10}".format(score.score) \
         + " | Params: " + str(parameter))
 
 
@@ -76,9 +76,9 @@ def run_algorithm_grid_search(algo, file, parameter_grid=[]):
     output.write()
 
     print("{:<15}".format(algo.getName()) \
-        + " executed input: " + "{:<10}".format(file) \
+        + " executed input: " + "{:<15}".format(file) \
         + " in {:.2f}s".format(end_time - start_time) \
-        + " | Score: " + "{:<5}".format(score.score) \
+        + " | Score: " + "{:<10}".format(score.score) \
         + " | Params: " + str(parameter))
 
 
@@ -104,4 +104,4 @@ if __name__ == "__main__":
 
 
     end_time_program = time.time()
-    print("Whole execution took:", end_time_program - start_time_program)
+    print("Whole execution took: {:.2f}s".format(end_time_program - start_time_program))
