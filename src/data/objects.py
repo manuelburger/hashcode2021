@@ -72,8 +72,17 @@ class Schedule():
             print("WARNING: tried to set non-existent street on schedule")
 
 
-    def set_duration_street(self, street, duration):
-        self.durations[street] = duration
+    def set_duration_street(self, street, duration, sim_duration):
+
+        sum_duration = 0
+        for d in self.durations.values():
+            sum_duration = sum_duration + d
+
+        old_d = self.durations[street]
+        max_new = sim_duration - (sum_duration - old_d)
+        update = min(duration, max_new)
+        # print("Update", update)
+        self.durations[street] = update
 
 
     def __str__(self) -> str:

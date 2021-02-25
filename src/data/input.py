@@ -58,7 +58,7 @@ class Input():
 
             start_section.outgoing_streets.add(street)
             end_section.incoming_streets.add(street)
-            print(start, end, name, L)
+            # print(start, end, name, L)
 
         for c in range(0, num_cars):
             line = self.file.readline()
@@ -73,14 +73,14 @@ class Input():
 
 
             cars.append(car)
-            print(car)
+            # print(car)
 
         #set default scheduler
 
         for id, intersec in zip(intersections.keys(), intersections.values()):
             intersec.schedule = Schedule(intersec, list(intersec.incoming_streets), [street.count for street in intersec.incoming_streets])
 
-        print([[intersection.id for intersection in car.intersection_path] for car in cars])
+        # print([[intersection.id for intersection in car.intersection_path] for car in cars])
         self.intersections = intersections
         self.name_to_intersection = name_to_intersection
         self.streets = streets

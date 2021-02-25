@@ -43,8 +43,7 @@ class Output():
                 self.file.write("{}\n".format(inter.id)) # Print ID of intersection
                 self.file.write("{}\n".format(len(schedule))) # Print number of schedules
                 for s in schedule:
-                    self.file.write("{} {}".format(s[0], s[1])) # Print for each street name and duration
-
+                    self.file.write("{} {}\n".format(s[0], s[1])) # Print for each street name and duration
 
 
         self.file.close()

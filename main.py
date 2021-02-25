@@ -95,7 +95,7 @@ if __name__ == "__main__":
     start_time_program = time.time()
 
     scores = []
-    for f in FILES_TEST:
+    for f in FILES:
         res = delayed(run_algorithm)(GreedyAlgorithm(), f)
         scores.append(res)
 
