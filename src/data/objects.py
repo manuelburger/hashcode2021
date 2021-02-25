@@ -45,7 +45,7 @@ class Schedule():
     def __init__(self, intersection, streets, weights, sim_duration) -> None:
 
         self.intersection = intersection
-        self.sim_duration
+        self.sim_duration = sim_duration
         self.durations = {}
         self.order = streets
         for street, weight in zip(streets, weights):
