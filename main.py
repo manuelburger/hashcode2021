@@ -15,7 +15,7 @@ from src.data.output import Output
 from src.scoring.score import Score
 from src.algorithms import *
 
-FILES = ["dummy", "dummy2"]
+FILES = ["a"]
 
 
 def run_algorithm(algo, file, parameter={}):
