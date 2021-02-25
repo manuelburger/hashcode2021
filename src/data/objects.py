@@ -23,11 +23,11 @@ class Intersection():
         
         self.id = id
 
-        self.incoming_sections = []
-        self.outgoing_sections = []
+        self.incoming_sections = set()
+        self.outgoing_sections = set()
 
-        self.outgoing_streets = []
-        self.incoming_streets = []
+        self.outgoing_streets = set()
+        self.incoming_streets = set()
 
         self.schedule = None
 

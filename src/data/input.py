@@ -16,6 +16,8 @@ class Input():
 
     def parse(self):
         streets = {}
+        intersections = {}
+        name_to_intersection = {}
         cars = []
         """
         Parse Input File and Store in local data structure
@@ -33,15 +35,29 @@ class Input():
         for c in range(0, num_streets):
             line = self.file.readline()
             start, end, name, L = line.strip(" ").split(" ")
-            streets[name] = Street(name, int(start), int(end), int(L))
+            start_idx, end_idx = int(start), int(end)
+
+            if start_idx not in intersections.keys():
+                intersections[start_idx] = Intersection(start_idx)
+            if end_idx not in intersections.keys():
+                intersections[end_idx] = Intersection(end_idx)
+            start_section = intersections[start_idx]
+            end_section = intersections[end_idx]
+            start_section.outgoing_sections.add(intersections[end_idx])
+            end_section.incoming_sections.add(intersections[start_idx])
+
+            streets[name] = Street(name, start_section, end_section,  int(L))
+            name_to_intersection[name] = (start_section, end_section)
             print(start, end, name, L)
 
         for c in range(0, num_cars):
             line = self.file.readline()
             car_list = line.strip("\n").strip(" ").split(" ")
-            car = Car()
+            car = Car(c)
             car.street_path = [streets[street_name] for street_name in car_list[1:]]
+            car.intersection_path = [name_to_intersection[street_name][0] for street_name in car_list[1:]]
+            car.intersection_path.append(name_to_intersection[car_list[-1]][-1])
             car.total_streets = int(car_list[0])
             cars.append(car)
             print(car)
-        print(cars)
+        print([[intersection.id for intersection in car.intersection_path] for car in cars])

@@ -95,7 +95,7 @@ if __name__ == "__main__":
     start_time_program = time.time()
 
     scores = []
-    for f in FILES:
+    for f in FILES_TEST:
         res = delayed(run_algorithm_grid_search)(BasicAlgorithm(), f, parameter_grid=[1, 2])
         scores.append(res)
 
