@@ -26,6 +26,11 @@ class Intersection():
         self.outgoing_streets = []
         self.incoming_streets = []
 
+        self.schedule = None
+
+    def set_schedule(schedule):
+        self.schedule = schedule
+
 
 
 class Schedule():
@@ -35,7 +40,7 @@ class Schedule():
         self.intersection = intersection
         
         self.durations = {}
-        self.order = 0
+        self.order = streets
         for street in streets:
             self.durations[street] = 0
 
