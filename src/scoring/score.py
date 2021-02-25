@@ -18,4 +18,5 @@ class Score():
         # TODO: implement score computation based on output
         self.score = hash(self) % 100
 
+
         # raise NotImplementedError("Score initializationn not implemented")

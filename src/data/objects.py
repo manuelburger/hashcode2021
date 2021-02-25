@@ -12,6 +12,7 @@ class Street():
         self.L = L
         self.start_section = start_section
         self.end_section = end_section
+        self.count = 0
 
     def __str__(self) -> str:
         return "Street: {}".format(self.name)
@@ -28,6 +29,7 @@ class Intersection():
 
         self.outgoing_streets = set()
         self.incoming_streets = set()
+
 
         self.schedule = None
 
