@@ -57,7 +57,7 @@ class Input():
             name_to_intersection[name] = (start_section, end_section)
 
             start_section.outgoing_streets.add(street)
-            end_section.incoming_sections.add(street)
+            end_section.incoming_streets.add(street)
             print(start, end, name, L)
 
         for c in range(0, num_cars):
@@ -68,13 +68,17 @@ class Input():
             car.intersection_path = [name_to_intersection[street_name][0] for street_name in car_list[1:]]
             car.intersection_path.append(name_to_intersection[car_list[-1]][-1])
             car.total_streets = int(car_list[0])
+            for street_name in car_list[1:]:
+                streets[street_name].count += 1
+
+
             cars.append(car)
             print(car)
 
         #set default scheduler
 
         for id, intersec in zip(intersections.keys(), intersections.values()):
-            intersec.schedule = Schedule(intersec, list(intersec.incoming_streets))
+            intersec.schedule = Schedule(intersec, list(intersec.incoming_streets), [street.count for street in intersec.incoming_streets])
 
         print([[intersection.id for intersection in car.intersection_path] for car in cars])
         self.intersections = intersections
