@@ -42,7 +42,7 @@ class Intersection():
 
 class Schedule():
 
-    def __init__(self, intersection, streets) -> None:
+    def __init__(self, intersection, streets, weights) -> None:
 
         self.intersection = intersection
         
