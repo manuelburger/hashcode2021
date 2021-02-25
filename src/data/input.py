@@ -78,7 +78,7 @@ class Input():
         #set default scheduler
 
         for id, intersec in zip(intersections.keys(), intersections.values()):
-            intersec.schedule = Schedule(intersec, list(intersec.incoming_streets), [street.count for street in intersec.incoming_streets])
+            intersec.schedule = Schedule(intersec, list(intersec.incoming_streets), [street.count for street in intersec.incoming_streets], sim_duration)
 
         print([[intersection.id for intersection in car.intersection_path] for car in cars])
         self.intersections = intersections
