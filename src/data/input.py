@@ -15,9 +15,9 @@ class Input():
         self.name = name
 
     def parse(self):
-        streets = {}
-        intersections = {}
-        name_to_intersection = {}
+        streets = {} #name to street obj
+        intersections = {} #id to instersection obj
+        name_to_intersection = {} #name to intersection obj tuple
         cars = []
         """
         Parse Input File and Store in local data structure
@@ -41,13 +41,17 @@ class Input():
                 intersections[start_idx] = Intersection(start_idx)
             if end_idx not in intersections.keys():
                 intersections[end_idx] = Intersection(end_idx)
+
             start_section = intersections[start_idx]
             end_section = intersections[end_idx]
             start_section.outgoing_sections.add(intersections[end_idx])
             end_section.incoming_sections.add(intersections[start_idx])
 
-            streets[name] = Street(name, start_section, end_section,  int(L))
+            street = Street(name, start_section, end_section,  int(L))
+            streets[name] = street
             name_to_intersection[name] = (start_section, end_section)
+
+            start_section.outgoing_streets.add(str)
             print(start, end, name, L)
 
         for c in range(0, num_cars):
