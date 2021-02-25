@@ -51,9 +51,10 @@ class Schedule():
         self.sim_duration = sim_duration
         self.durations = {}
         self.order = streets
-        self.cycles = 2
+        self.cycles = 1
         for street, weight in zip(streets, weights):
-            self.durations[street] = 1 + weight * (sim_duration - len(weights)/ self.cycles) / sum(weights) / self.cycles
+            # sum_w = max(sum(weights), 1)
+            self.durations[street] = weight
 
     def set_street_to_front(self, street):
 

@@ -100,7 +100,7 @@ if __name__ == "__main__":
         scores.append(res)
 
     total_scores = delayed(sum)(scores)
-    total_scores = total_scores.compute() # Set num_workers=# to limit worker processes
+    total_scores = total_scores.compute(num_workers=1) # Set num_workers=# to limit worker processes
     print("Total scores: ", total_scores)
 
 

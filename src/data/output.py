@@ -32,6 +32,13 @@ class Output():
         # Output each schedule
         for inter in self.intersections:
 
+            sum_duration = 0
+            for d in inter.schedule.durations.values():
+                sum_duration = sum_duration + d
+
+            if not sum_duration > 0:
+                print("WARNING")
+
             schedule = []
             for street in inter.schedule.order:
 
