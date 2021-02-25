@@ -28,9 +28,24 @@ class Intersection():
 
 
 
+class Schedule():
+
+    def __init__(self, intersection, streets) -> None:
+
+        self.intersection = intersection
+        
+        self.durations = {}
+        self.order = 0
+        for street in streets:
+            self.durations[street] = 0
+
 
 
 class Car():
 
     def __init__(self) -> None:
-        pass
+        
+        self.total_streets = 0
+
+        self.street_path = []
+        self.intersection_path = []
