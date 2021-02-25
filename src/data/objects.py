@@ -45,14 +45,15 @@ class Intersection():
 
 class Schedule():
 
-    def __init__(self, intersection, streets, weights) -> None:
+    def __init__(self, intersection, streets, weights, sim_duration) -> None:
 
         self.intersection = intersection
-        
+        self.sim_duration = sim_duration
         self.durations = {}
         self.order = streets
-        for street in streets:
-            self.durations[street] = 1
+        self.cycles = 2
+        for street, weight in zip(streets, weights):
+            self.durations[street] = 1 + weight * (sim_duration - len(weights)/ self.cycles) / sum(weights) / self.cycles
 
     def set_street_to_front(self, street):
 
