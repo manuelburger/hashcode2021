@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     scores = []
     for f in FILES_TEST:
-        res = delayed(run_algorithm_grid_search)(BasicAlgorithm(), f, parameter_grid=[1, 2])
+        res = delayed(run_algorithm)(BasicAlgorithm(), f)
         scores.append(res)
 
     total_scores = delayed(sum)(scores)

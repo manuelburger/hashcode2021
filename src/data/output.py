@@ -16,7 +16,7 @@ class Output():
 
         # Class fields
         self.no_intersections = 0
-        self.intersections = []
+        self.intersections = set()
 
     def write(self):
         """
@@ -25,6 +25,8 @@ class Output():
             - input: Object of class Input
             - parameters: dictionary of parameters for algorithm
         """
+
+        print("Write output")
 
         # No of intersections for which we set a schedule
         self.file.write("{}\n".format(self.no_intersections))
@@ -40,9 +42,9 @@ class Output():
                     schedule.append((street.name, d))
 
             if len(schedule) > 0:
-                self.file.write("{}\n".format(inter.id))
-                self.file.write("{}\n".format(len(schedule)))
+                self.file.write("{}\n".format(inter.id)) # Print ID of intersection
+                self.file.write("{}\n".format(len(schedule))) # Print number of schedules
                 for s in schedule:
-                    self.file.write("{} {}".format(s[0], s[1]))
+                    self.file.write("{} {}".format(s[0], s[1])) # Print for each street name and duration
 
         self.file.close()
