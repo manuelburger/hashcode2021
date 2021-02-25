@@ -47,7 +47,7 @@ class Schedule():
         self.durations = {}
         self.order = streets
         for street in streets:
-            self.durations[street] = 0
+            self.durations[street] = 1
 
     def set_street_to_front(street):
 
