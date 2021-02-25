@@ -26,8 +26,6 @@ class Output():
             - parameters: dictionary of parameters for algorithm
         """
 
-        print("Write output")
-
         # No of intersections for which we set a schedule
         self.file.write("{}\n".format(self.no_intersections))
 
@@ -46,5 +44,7 @@ class Output():
                 self.file.write("{}\n".format(len(schedule))) # Print number of schedules
                 for s in schedule:
                     self.file.write("{} {}".format(s[0], s[1])) # Print for each street name and duration
+
+
 
         self.file.close()

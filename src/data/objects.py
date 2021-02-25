@@ -16,6 +16,9 @@ class Street():
     def __str__(self) -> str:
         return "Street: {}".format(self.name)
 
+    def __repr__(self) -> str:
+        return self.__str__()
+
 
 class Intersection():
 
@@ -49,7 +52,7 @@ class Schedule():
         for street in streets:
             self.durations[street] = 1
 
-    def set_street_to_front(street):
+    def set_street_to_front(self, street):
 
         if street in self.order:
 
@@ -67,7 +70,7 @@ class Schedule():
             print("WARNING: tried to set non-existent street on schedule")
 
 
-    def set_duration_street(street, duration):
+    def set_duration_street(self, street, duration):
         self.durations[street] = duration
 
 

@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     scores = []
     for f in FILES_TEST:
-        res = delayed(run_algorithm)(BasicAlgorithm(), f)
+        res = delayed(run_algorithm)(GreedyAlgorithm(), f)
         scores.append(res)
 
     total_scores = delayed(sum)(scores)

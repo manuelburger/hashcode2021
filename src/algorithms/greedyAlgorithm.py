@@ -35,6 +35,8 @@ class GreedyAlgorithm(Algorithm):
         # Get random car
         car = random.choice(cars)
 
+        print("Guide car:", car, car.street_path)
+
         # Set 
         for inter, street in zip(car.intersection_path[1:], car.street_path):
 
@@ -42,8 +44,17 @@ class GreedyAlgorithm(Algorithm):
                 output.no_intersections = output.no_intersections + 1
                 output.intersections.add(inter)
 
+                print("Set schedule of street", street, " inter ", inter)
+                print("Available streets", inter.incoming_streets)
                 inter.schedule.set_street_to_front(street)
                 inter.schedule.set_duration_street(street, DURATION_MULT * len(inter.incoming_streets))
+
+
+        # Set remaining schedules according to default scheduling
+        for id, inter in zip(input.intersections.keys(), input.intersections.values()):
+            if inter not in output.intersections:
+                output.no_intersections = output.no_intersections + 1
+                output.intersections.add(inter)
 
         return output
 
