@@ -5,7 +5,7 @@
 # ------------------------------
 
 
-from src.data.objects import Car, Street, Intersection
+from src.data.objects import Car, Street, Intersection, Schedule
 class Input():
 
     # TODO: add fields according to input data
@@ -13,6 +13,11 @@ class Input():
     def __init__(self, filepath, name):
         self.file = open(filepath, "r")
         self.name = name
+
+        self.streets = {}  # name to street obj
+        self.intersections = {}  # id to instersection obj
+        self.name_to_intersection = {}  # name to intersection obj tuple
+        self.cars = []
 
     def parse(self):
         streets = {} #name to street obj
@@ -51,7 +56,8 @@ class Input():
             streets[name] = street
             name_to_intersection[name] = (start_section, end_section)
 
-            start_section.outgoing_streets.add(str)
+            start_section.outgoing_streets.add(street)
+            end_section.incoming_sections.add(street)
             print(start, end, name, L)
 
         for c in range(0, num_cars):
@@ -64,4 +70,16 @@ class Input():
             car.total_streets = int(car_list[0])
             cars.append(car)
             print(car)
+
+        #set default scheduler
+
+        for id, intersec in zip(intersections.keys(), intersections.values()):
+            intersec.schedule = Schedule(intersec, list(intersec.incoming_streets))
+
         print([[intersection.id for intersection in car.intersection_path] for car in cars])
+        self.intersections = intersections
+        self.name_to_intersection = name_to_intersection
+        self.streets = streets
+        self.cars = cars
+        self.sim_duration, self.num_intersections, self.num_streets, self.num_cars, self.points = sim_duration, num_intersections, num_streets, num_cars, points
+
